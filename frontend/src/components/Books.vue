@@ -106,9 +106,7 @@ const currentFilter = ref<string>('')
 
 const emit = defineEmits(['error'])
 
-onBeforeMount(() => {
-  bookStore.fetchBooks()
-})
+onBeforeMount(() => bookStore.fetchBooks())
 
 const setFilter = (filter: string) => {
   currentFilter.value = filter

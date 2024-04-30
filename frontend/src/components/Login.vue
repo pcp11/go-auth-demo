@@ -70,13 +70,13 @@ const v$ = useVuelidate(rules, form)
 
 const emit = defineEmits(['error'])
 
-const onSubmit = () => {
-  v$.value.$validate().then((isValid) => {
-    if (!isValid) {
-      return
-    }
-    return authStore.login(form.email, form.password)
-  })
+const onSubmit = async () => {
+  const isValid = await v$.value.$validate()
+
+  if (!isValid) {
+    return
+  }
+  authStore.login(form.email, form.password)
 }
 </script>
 

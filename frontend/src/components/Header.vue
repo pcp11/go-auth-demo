@@ -14,7 +14,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav me-auto">
           <li class="nav-item">
             <RouterLink class="nav-link active" aria-current="page" to="/"> Home </RouterLink>
           </li>
@@ -48,29 +48,27 @@
             </ul>
           </li>
           <li class="nav-item">
-            <RouterLink v-if="token === ''" class="nav-link" to="/login"> Login </RouterLink>
+            <RouterLink v-if="!authStore.isAuthenticated()" class="nav-link" to="/login">
+              Login
+            </RouterLink>
             <a v-else href="javascript:void(0)" class="nav-link" @click="logout()"> Logout </a>
           </li>
-          <li class="nav-item">
-            <a href="javascript:void(0)" class="nav-link" @click="authStore.validateToken()">
-              TEST
-            </a>
-          </li>
         </ul>
+        <span class="navbar-text">
+          {{ authStore.user?.name }}
+        </span>
       </div>
     </div>
   </nav>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 
 const authStore = useAuthStore()
-const token = ref('')
 
-const logout = () => console.log('Logout')
+const logout = () => authStore.logout()
 </script>
 
 <style scoped>
