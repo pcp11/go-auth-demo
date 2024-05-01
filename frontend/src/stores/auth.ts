@@ -15,7 +15,7 @@ export const useAuthStore = defineStore('auth', () => {
     await axiosInstance.post(API_URL + '/login', { email: email, password: password })
     await validateToken()
 
-    router.push({ path: returnUrl.value || "/" })
+    router.push({ path: returnUrl.value || '/' })
   }
 
   const logout = async () => {
@@ -28,11 +28,11 @@ export const useAuthStore = defineStore('auth', () => {
       const response = await axiosInstance.post(API_URL + '/auth')
       user.value = response.data.user
     } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.log(error.message)
-        } else {
-          console.log(error)
-        }
+      if (axios.isAxiosError(error)) {
+        console.log(error.message)
+      } else {
+        console.log(error)
+      }
     }
   }
 

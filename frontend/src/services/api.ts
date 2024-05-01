@@ -34,14 +34,3 @@ export interface User {
 export const axiosInstance = axios.create({
   withCredentials: true
 })
-
-// axiosInstance.interceptors.response.use(
-//   response => response,
-//   (error) => {
-//     if (error.response.status === 401) {
-//       router.push({ path: 'login' })
-//       return
-//     }
-//     return Promise.reject(error);
-//   }
-// )

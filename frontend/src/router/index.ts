@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Body from '@/components/Body.vue'
+import Home from '@/components/Home.vue'
 import Book from '@/components/Book.vue'
 import Books from '@/components/Books.vue'
 import Login from '@/components/Login.vue'
@@ -11,7 +11,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'Home',
-      component: Body
+      component: Home
     },
     {
       path: '/books',
@@ -34,7 +34,7 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach(async (to, from) => {
+router.beforeEach(async (to, _) => {
   const authStore = useAuthStore()
   const authRequired = to.matched.some((record) => record.meta.requiresAuth)
 
